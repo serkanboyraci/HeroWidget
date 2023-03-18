@@ -7,15 +7,22 @@
 
 import SwiftUI
 
+let superHeroArray = [superman, batman, ironman]
+
 struct ContentView: View {
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            ForEach(superHeroArray) { hero in
+                HeroView(hero: hero)
+                    .onTapGesture {
+                        saveToDefaults(hero: hero)
+                    }
+            }
         }
         .padding()
+    }
+    func saveToDefaults(hero: Superhero) {
+        print(hero.name)
     }
 }
 
