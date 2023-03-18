@@ -10,34 +10,35 @@ import SwiftUI
 import Intents
 
 struct Provider: IntentTimelineProvider {
+    
+    @AppStorage("hero", store: UserDefaults(suiteName: "group.com.aliserkanboyraci.HeroWidget."))
+    var heroData : Data = Data()
+    
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: ConfigurationIntent())
+        SimpleEntry(date: Date(), configuration: ConfigurationIntent(), hero: Superhero(image: "batman", name: "Batman", realName: "Bruce Wayne"))
     }
 
     func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), configuration: configuration)
-        completion(entry)
+        if let hero = try? JSONDecoder().decode(Superhero.self, from: heroData) {
+            let entry = SimpleEntry(date: Date(), configuration: configuration, hero: hero)
+            completion(entry)
+        }
     }
 
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [SimpleEntry] = []
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, configuration: configuration)
-            entries.append(entry)
+        if let hero = try? JSONDecoder().decode(Superhero.self, from: heroData) {
+            let entry = SimpleEntry(date: Date(), configuration: configuration, hero: hero)
+            let timeline = Timeline(entries: [entry], policy: .never)
+            
+            completion(timeline)
         }
-
-        let timeline = Timeline(entries: entries, policy: .atEnd)
-        completion(timeline)
     }
 }
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
     let configuration: ConfigurationIntent
+    let hero: Superhero
 }
 
 struct WidgetHeroEntryView : View {
