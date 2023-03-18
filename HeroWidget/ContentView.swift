@@ -6,10 +6,17 @@
 //
 
 import SwiftUI
+import WidgetKit
 
 let superHeroArray = [superman, batman, ironman]
 
 struct ContentView: View {
+    
+    @AppStorage("hero", store: UserDefaults(suiteName: "group.com.aliserkanboyraci.HeroWidget."))
+    var heroData : Data = Data()
+    
+    
+    
     var body: some View {
         VStack {
             ForEach(superHeroArray) { hero in
@@ -19,10 +26,12 @@ struct ContentView: View {
                     }
             }
         }
-        .padding()
     }
     func saveToDefaults(hero: Superhero) {
-        print(hero.name)
+        if let heroData = try? JSONEncoder().encode(hero) {
+            self.heroData = heroData
+            WidgetCenter.shared.reloadTimelines(ofKind: "WidgetHero")
+        }
     }
 }
 

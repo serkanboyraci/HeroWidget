@@ -45,14 +45,15 @@ struct WidgetHeroEntryView : View {
     var entry: Provider.Entry
 
     var body: some View {
-        Text(entry.date, style: .time)
+        CircularImageView(image: Image(entry.hero.image))
     }
 }
 
 struct WidgetHero: Widget {
-    let kind: String = "WidgetHero"
+    let kind: String = "WidgetHero" //type
 
     var body: some WidgetConfiguration {
+        
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
             WidgetHeroEntryView(entry: entry)
         }
@@ -61,9 +62,4 @@ struct WidgetHero: Widget {
     }
 }
 
-struct WidgetHero_Previews: PreviewProvider {
-    static var previews: some View {
-        WidgetHeroEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent()))
-            .previewContext(WidgetPreviewContext(family: .systemSmall))
-    }
-}
+
