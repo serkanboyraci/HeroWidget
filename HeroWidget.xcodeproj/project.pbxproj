@@ -23,6 +23,9 @@
 		6027127429C610B500886597 /* WidgetHero.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 6027127029C610B300886597 /* WidgetHero.intentdefinition */; };
 		6027127529C610B500886597 /* WidgetHero.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 6027127029C610B300886597 /* WidgetHero.intentdefinition */; };
 		6027127829C610B500886597 /* WidgetHeroExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 6027126329C610B300886597 /* WidgetHeroExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		602712B829C648BC00886597 /* HeroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027125D29C6023300886597 /* HeroView.swift */; };
+		602712B929C648BF00886597 /* CircularImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027125B29C5FD0B00886597 /* CircularImageView.swift */; };
+		602712BA29C648C200886597 /* Superhero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027125929C5F6CD00886597 /* Superhero.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -267,9 +270,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				6027126F29C610B300886597 /* WidgetHero.swift in Sources */,
+				602712BA29C648C200886597 /* Superhero.swift in Sources */,
+				602712B929C648BF00886597 /* CircularImageView.swift in Sources */,
 				6027126D29C610B300886597 /* WidgetHeroLiveActivity.swift in Sources */,
 				6027127429C610B500886597 /* WidgetHero.intentdefinition in Sources */,
 				6027126B29C610B300886597 /* WidgetHeroBundle.swift in Sources */,
+				602712B829C648BC00886597 /* HeroView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
