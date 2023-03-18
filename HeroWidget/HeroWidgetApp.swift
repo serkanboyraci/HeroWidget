@@ -15,3 +15,5 @@ struct HeroWidgetApp: App {
         }
     }
 }
+
+// mistakenly erased WidgetHeroExtension.entitlements folder
